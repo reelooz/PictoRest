@@ -1,0 +1,386 @@
+// ---------------------------------------------------------------------------
+// Imports
+
+@import "base";
+$break1: 42em 8 64em;
+$break2: 64em 16 ;
+
+/* -------------------------------------------------------------------------*/
+/* Layout */
+
+body {
+	@include container($total-columns, $break1);
+	@include susy-grid-background;
+	//background-color: #272822;
+	background-image:url(/PictoRest/web/images/back.png);
+	background-repeat:repeat;
+	background-attachment:fixed;
+	color:white;
+	min-width: 340px;
+	font-family: 'Lato', sans-serif;
+	
+		&>header{
+		@include span-columns(4 ,4);
+		background-color: #a4c400;
+		background-repeat: no-repeat;
+		background-size:18%;
+		background-position:left;
+		overflow: hidden;
+		text-align: center;
+		height: 100px;
+			&>a{
+				text-decoration: none;
+				color:white;
+				&>h1{
+					@include span-columns(4 ,4);
+					text-align: center;
+					font-family: 'Audiowide', cursive;
+				}
+			}				
+		}
+
+		&>nav{
+			@include span-columns(4 ,4);
+			display: block;
+			border:  solid 2px #a4c400;
+			-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+			-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+			box-sizing: border-box;
+			&>form{
+				&>input{
+					margin-top: 2%;
+					margin-bottom: 2%;
+					margin-left: 2%;
+				}
+			}
+			&>div#gestion{
+			@include span-columns(4 ,4);
+			-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+			-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+			box-sizing: border-box;		
+				&>a{
+					@include span-columns(1 ,4);
+					text-align: center;
+					text-decoration: none;
+					width: 100%;
+					color:white;					
+				}
+				&>a:hover{
+					@include span-columns(1 ,4);
+					text-align: center;
+					text-decoration: none;
+					background-color: #a4c400;
+					width: 100%;
+					color:black;
+				}
+			}		
+			
+		}
+		&>section{
+		margin-bottom: 2%;			
+			@include span-columns(4 omega,4);
+			-webkit-box-sizing: border-box; 
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+			height: 100%;
+			margin-top: 2%;
+			&>a{
+				text-decoration: none;
+				color: white;
+				&>div.photo{
+					@include span-columns(2 omega ,4);
+					-webkit-box-sizing: border-box; 
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;			
+					border : solid 1px #a4c400 ;
+					width: 50%;
+					height: 300px;
+					padding: 1%;
+					text-align: center;
+				}
+				&>div.photo:hover{
+					background-color: #9ACD32;
+					background-image:url(../images/loupe.png);
+					background-repeat: no-repeat;			
+					color:black;
+					opacity: 0.8;
+				}
+				&>div#creaAlbum{
+					@include span-columns(2 omega ,4);
+					-webkit-box-sizing: border-box; 
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;			
+					border : solid 1px #a4c400 ;
+					width: 50%;
+					height: 300px;
+					padding: 1%;
+					text-align: center;
+				}
+				&>div#creaAlbum:hover{
+					@include span-columns(2 omega ,4);
+					-webkit-box-sizing: border-box; 
+					-moz-box-sizing: border-box;    
+					box-sizing: border-box;			
+					border : solid 1px #a4c400 ;
+					width: 50%;
+					height: 300px;
+					padding: 1%;
+					text-align: center;
+					background-color: #a20025;
+					opacity : 0.7;
+				}
+				
+			}
+		}
+		&>div#contenu{
+			background-color: #272822;
+			text-align: center;
+			@include span-columns(4 ,4);
+			margin-top: 5%;
+			margin-right: 5%;
+			margin-left: 5%;
+			width: 90%;
+			-webkit-box-sizing: border-box; 
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+			box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			-moz-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			-webkit-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			&>form{
+				&>div#identifier{
+					@include span-columns(4 ,4);
+					margin-right: 5%;
+					margin-left: 5%;
+					width: 90%;
+					&>input[type="submit"]{
+						@include span-columns(4 ,4);
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: #a4c400 ;
+						border: solid 3px black;
+					}
+					&>input[type="submit"]:hover{
+						@include span-columns(4 ,4);
+						color:white;
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: grey ;
+						border: solid 3px black;
+					}
+				}
+				&>div#inscrire{
+					@include span-columns(4 ,4);
+					margin-right: 5%;
+					margin-left: 5%;
+					width: 90%;
+					&>input[type="submit"]{
+						@include span-columns(4 ,4);
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: #a4c400 ;
+						border: solid 3px black;
+					}
+					&>input[type="submit"]:hover{
+						@include span-columns(4 ,4);
+						color:white;
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: grey ;
+						border: solid 3px black;
+					}
+				}
+				
+			}
+		}
+		&>footer{
+			text-align: center;
+			color: white;
+		}
+	
+	
+
+	/*Breakpoint écran tablettes*/
+	@include at-breakpoint($break1) {
+		&>section{
+			@include span-columns(8 ,8);
+			&>a{
+				&>div.photo{
+					@include span-columns(3 omega ,8);
+					width: 33.33%;
+					
+				}
+				&>div.photo:hover{
+					background-color: #9ACD32;
+					background-image:url(../images/loupe.png);
+					background-repeat: no-repeat;			
+					color:black;
+					opacity: 0.8;
+					
+				}
+				&>div#creaAlbum{
+					@include span-columns(3 omega ,8);
+					width: 33.33%;
+				}
+				&>div#creaAlbum:hover{
+					@include span-columns(3 omega ,8);
+					width: 33.33%;
+					background-color: #a20025;
+					opacity : 0.7;
+				}
+			}
+		}
+
+		
+	}
+		
+
+
+	/*Breakpoint écran ordinateur*/
+	@include at-breakpoint($break2) {
+		&>nav{
+			@include span-columns(16 ,16);
+			display: block;
+			border:  solid 2px #a4c400;
+			-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+			-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+			box-sizing: border-box;
+			&>form{
+				&>input{
+					margin-top: 2%;
+					margin-bottom: 2%;
+					margin-left: 2%;
+				}
+			}
+			&>div#gestion{
+			@include span-columns(16 ,16);
+			-webkit-box-sizing: border-box; 
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;		
+				&>a{
+					@include span-columns(8 omega ,16);
+					text-align: center;
+					text-decoration: none;
+					width: 50%;
+					color:white;					
+				}
+				&>a:hover{
+					@include span-columns(8 omega ,16);
+					text-align: center;
+					text-decoration: none;
+					background-color: #a4c400;
+					width: 50%;
+					color:black;
+				}
+			}		
+			
+		}
+		&>section{
+			@include span-columns(16 ,16);
+			&>a{
+				&>div.photo{
+					@include span-columns(4 omega ,16);
+					width: 25%;
+					
+				}
+				&>div.photo:hover{
+					background-color: #9ACD32;
+					background-image:url(../images/loupe.png);
+					background-repeat: no-repeat;			
+					color:black;
+					opacity: 0.8;
+				}
+				&>div#creaAlbum{
+					@include span-columns(4 omega ,16);
+					width: 25%;
+				}
+				&>div#creaAlbum:hover{
+					@include span-columns(4 omega ,16);
+					width: 25%;
+					background-color: #a20025;
+					opacity : 0.7;
+				}
+				
+			}
+		}
+		&>div#contenu{
+			
+			@include span-columns(16 omega,16);
+			margin-right: 5%;
+			margin-left :5%;
+			width: 90%;
+			
+			&>form{
+				&>div#identifier{
+					@include span-columns(8 ,16);
+					margin-right: 5%;
+					margin-left :5%;
+					width: 40%;
+					&>input[type="submit"]{
+						@include span-columns(4 ,4);
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: #a4c400 ;
+						border: solid 3px black;
+					}
+					&>input[type="submit"]:hover{
+						@include span-columns(4 ,4);
+						color:white;
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: grey ;
+						border: solid 3px black;
+					}
+				}
+				&>div#inscrire{
+					@include span-columns(8 omega ,16);
+					margin-right: 5%;
+					margin-left :5%;
+					width: 40%;
+					&>input[type="submit"]{
+					@include span-columns(4 ,4);
+					margin-top: 2%;
+					margin-right: 5%;
+					margin-left: 5%;
+					margin-bottom: 2%;
+					width: 90%;
+					background-color: #a4c400 ;
+					border: solid 3px black;
+					}
+					&>input[type="submit"]:hover{
+						@include span-columns(4 ,4);
+						color:white;
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: grey ;
+						border: solid 3px black;
+
+					}
+				}
+				
+			}
+		}
+		
+	}
+		
+}
