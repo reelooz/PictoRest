@@ -1,14 +1,16 @@
 <nav id="nav">
-    <form method="POST" action="#">
-        <input type="text" name="recherche" placeholder="Votre recherche"/>
+    <form method="POST" >
+        <input type="text" id="recherche" placeholder="Votre recherche"/>
         <select name="rechercheListe">
-            <option name="photo"> Photos </option>
+            <option name="albums"> Albums </option>
             <option name="user"> Users </option>
         </select>
-        <input type="submit" value="Go"/>
+        <input type="button" onClick="rechercheAjax({$smarty.session.idUtil})" value="Go"/>
     </form>
     {if isset($smarty.session.idUtil)}
+        
         <div id="gestion">
+            <a id="flux" onClick="afficheflux( {$smarty.session.idUtil} )">Flux de photos</a>
             <a id="inscription" href="/PictoRest/deconnexion">Deconnexion [ {$smarty.session.identifiant} ]</a>   				
             <a id="profil" href="/PictoRest/profil">Mon profil</a>
         </div>

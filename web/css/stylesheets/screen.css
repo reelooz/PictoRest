@@ -31,7 +31,7 @@ body:after {
   display: table;
   clear: both;
 }
-/* line 22, ../sass/screen.scss */
+/* line 21, ../sass/screen.scss */
 body > header {
   width: 100%;
   float: left;
@@ -45,12 +45,12 @@ body > header {
   text-align: center;
   height: 100px;
 }
-/* line 31, ../sass/screen.scss */
+/* line 30, ../sass/screen.scss */
 body > header > a {
   text-decoration: none;
   color: white;
 }
-/* line 34, ../sass/screen.scss */
+/* line 33, ../sass/screen.scss */
 body > header > a > h1 {
   width: 100%;
   float: left;
@@ -59,7 +59,7 @@ body > header > a > h1 {
   text-align: center;
   font-family: 'Audiowide', cursive;
 }
-/* line 42, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 body > nav {
   width: 100%;
   float: left;
@@ -73,13 +73,13 @@ body > nav {
   /* Firefox, other Gecko */
   box-sizing: border-box;
 }
-/* line 50, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 body > nav > form > input {
   margin-top: 2%;
   margin-bottom: 2%;
   margin-left: 2%;
 }
-/* line 56, ../sass/screen.scss */
+/* line 55, ../sass/screen.scss */
 body > nav > div#gestion {
   width: 100%;
   float: left;
@@ -91,7 +91,7 @@ body > nav > div#gestion {
   /* Firefox, other Gecko */
   box-sizing: border-box;
 }
-/* line 61, ../sass/screen.scss */
+/* line 60, ../sass/screen.scss */
 body > nav > div#gestion > a {
   width: 21.73913%;
   float: left;
@@ -102,7 +102,7 @@ body > nav > div#gestion > a {
   width: 100%;
   color: white;
 }
-/* line 68, ../sass/screen.scss */
+/* line 67, ../sass/screen.scss */
 body > nav > div#gestion > a:hover {
   width: 21.73913%;
   float: left;
@@ -114,8 +114,8 @@ body > nav > div#gestion > a:hover {
   width: 100%;
   color: black;
 }
-/* line 79, ../sass/screen.scss */
-body > section {
+/* line 78, ../sass/screen.scss */
+body > section, body #rech {
   margin-bottom: 2%;
   width: 100%;
   float: right;
@@ -128,13 +128,13 @@ body > section {
   height: 100%;
   margin-top: 2%;
 }
-/* line 87, ../sass/screen.scss */
-body > section > a {
+/* line 86, ../sass/screen.scss */
+body > section > a, body #rech > a {
   text-decoration: none;
   color: white;
 }
-/* line 90, ../sass/screen.scss */
-body > section > a > div.photo {
+/* line 89, ../sass/screen.scss */
+body > section > a > div.photo, body #rech > a > div.photo {
   width: 47.82609%;
   float: right;
   margin-right: 0;
@@ -149,16 +149,16 @@ body > section > a > div.photo {
   padding: 1%;
   text-align: center;
 }
-/* line 101, ../sass/screen.scss */
-body > section > a > div.photo:hover {
+/* line 100, ../sass/screen.scss */
+body > section > a > div.photo:hover, body #rech > a > div.photo:hover {
   background-color: #9ACD32;
-  background-image: url(../images/loupe.png);
+  background-image: url(/PictoRest/web/images/loupe.png);
   background-repeat: no-repeat;
   color: black;
   opacity: 0.8;
 }
-/* line 108, ../sass/screen.scss */
-body > section > a > div#creaAlbum {
+/* line 107, ../sass/screen.scss */
+body > section > a > div#creaAlbum, body #rech > a > div#creaAlbum {
   width: 47.82609%;
   float: right;
   margin-right: 0;
@@ -173,8 +173,8 @@ body > section > a > div#creaAlbum {
   padding: 1%;
   text-align: center;
 }
-/* line 119, ../sass/screen.scss */
-body > section > a > div#creaAlbum:hover {
+/* line 118, ../sass/screen.scss */
+body > section > a > div#creaAlbum:hover, body #rech > a > div#creaAlbum:hover {
   width: 47.82609%;
   float: right;
   margin-right: 0;
@@ -192,6 +192,53 @@ body > section > a > div#creaAlbum:hover {
   opacity: 0.7;
 }
 /* line 135, ../sass/screen.scss */
+body > div#photo {
+  background-color: #272822;
+  text-align: center;
+  width: 100%;
+  float: left;
+  margin-right: 4.34783%;
+  display: inline;
+  margin-top: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 90%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+  -moz-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+  -webkit-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+}
+/* line 150, ../sass/screen.scss */
+body > div#photo > img#pics {
+  width: 100%;
+  float: left;
+  margin-right: 4.34783%;
+  display: inline;
+  margin-top: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  height: auto;
+  width: 90%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+}
+/* line 163, ../sass/screen.scss */
+body > div#photo > a {
+  text-decoration: none;
+  color: white;
+}
+/* line 167, ../sass/screen.scss */
+body > div#photo > a:hover {
+  text-decoration: underline;
+  color: white;
+}
+/* line 172, ../sass/screen.scss */
 body > div#contenu {
   background-color: #272822;
   text-align: center;
@@ -202,6 +249,7 @@ body > div#contenu {
   margin-top: 5%;
   margin-right: 5%;
   margin-left: 5%;
+  margin-bottom: 2%;
   width: 90%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -210,7 +258,20 @@ body > div#contenu {
   -moz-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
   -webkit-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
 }
-/* line 150, ../sass/screen.scss */
+/* line 187, ../sass/screen.scss */
+body > div#contenu > p.error {
+  color: red;
+}
+/* line 190, ../sass/screen.scss */
+body > div#contenu > a {
+  color: orange;
+}
+/* line 193, ../sass/screen.scss */
+body > div#contenu > a:hover {
+  text-decoration: blink;
+  color: white;
+}
+/* line 198, ../sass/screen.scss */
 body > div#contenu > form > div#identifier {
   width: 100%;
   float: left;
@@ -220,7 +281,7 @@ body > div#contenu > form > div#identifier {
   margin-left: 5%;
   width: 90%;
 }
-/* line 155, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 body > div#contenu > form > div#identifier > input[type="submit"] {
   width: 100%;
   float: left;
@@ -234,7 +295,7 @@ body > div#contenu > form > div#identifier > input[type="submit"] {
   background-color: #a4c400;
   border: solid 3px black;
 }
-/* line 165, ../sass/screen.scss */
+/* line 213, ../sass/screen.scss */
 body > div#contenu > form > div#identifier > input[type="submit"]:hover {
   width: 100%;
   float: left;
@@ -249,7 +310,7 @@ body > div#contenu > form > div#identifier > input[type="submit"]:hover {
   background-color: grey;
   border: solid 3px black;
 }
-/* line 177, ../sass/screen.scss */
+/* line 225, ../sass/screen.scss */
 body > div#contenu > form > div#inscrire {
   width: 100%;
   float: left;
@@ -259,7 +320,7 @@ body > div#contenu > form > div#inscrire {
   margin-left: 5%;
   width: 90%;
 }
-/* line 182, ../sass/screen.scss */
+/* line 230, ../sass/screen.scss */
 body > div#contenu > form > div#inscrire > input[type="submit"] {
   width: 100%;
   float: left;
@@ -273,7 +334,7 @@ body > div#contenu > form > div#inscrire > input[type="submit"] {
   background-color: #a4c400;
   border: solid 3px black;
 }
-/* line 192, ../sass/screen.scss */
+/* line 240, ../sass/screen.scss */
 body > div#contenu > form > div#inscrire > input[type="submit"]:hover {
   width: 100%;
   float: left;
@@ -288,42 +349,97 @@ body > div#contenu > form > div#inscrire > input[type="submit"]:hover {
   background-color: grey;
   border: solid 3px black;
 }
-/* line 207, ../sass/screen.scss */
+/* line 254, ../sass/screen.scss */
+body > div#contenu > #uploadUrl, body > div#contenu #uploadFile {
+  width: 100%;
+  float: left;
+  margin-right: 4.34783%;
+  display: inline;
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 90%;
+}
+/* line 260, ../sass/screen.scss */
+body > div#contenu > #uploadUrl > form > input[type="text"], body > div#contenu > #uploadUrl > form input[type="file"], body > div#contenu #uploadFile > form > input[type="text"], body > div#contenu #uploadFile > form input[type="file"] {
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 90%;
+}
+/* line 265, ../sass/screen.scss */
+body > div#contenu > #uploadUrl > form > input[type="submit"], body > div#contenu #uploadFile > form > input[type="submit"] {
+  width: 100%;
+  float: left;
+  margin-right: 4.34783%;
+  display: inline;
+  margin-top: 2%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 90%;
+  background-color: #a4c400;
+  border: solid 3px black;
+}
+/* line 275, ../sass/screen.scss */
+body > div#contenu > #uploadUrl > form > input[type="submit"]:hover, body > div#contenu #uploadFile > form > input[type="submit"]:hover {
+  width: 100%;
+  float: left;
+  margin-right: 4.34783%;
+  display: inline;
+  color: white;
+  margin-top: 2%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  width: 90%;
+  background-color: grey;
+  border: solid 3px black;
+}
+/* line 289, ../sass/screen.scss */
+body > div#contenu > #uploadFile {
+  width: 100%;
+  float: left;
+  margin-right: 4.34783%;
+  display: inline;
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 90%;
+}
+/* line 296, ../sass/screen.scss */
 body > footer {
   text-align: center;
   color: white;
 }
 @media (min-width: 42em) and (max-width: 64em) {
-  /* line 216, ../sass/screen.scss */
-  body > section {
+  /* line 305, ../sass/screen.scss */
+  body > section, body div#rech {
     width: 100%;
     float: left;
     margin-right: 2.12766%;
   }
-  /* line 219, ../sass/screen.scss */
-  body > section > a > div.photo {
+  /* line 308, ../sass/screen.scss */
+  body > section > a > div.photo, body div#rech > a > div.photo {
     width: 36.17021%;
     float: right;
     margin-right: 0;
     width: 33.33%;
   }
-  /* line 224, ../sass/screen.scss */
-  body > section > a > div.photo:hover {
+  /* line 313, ../sass/screen.scss */
+  body > section > a > div.photo:hover, body div#rech > a > div.photo:hover {
     background-color: #9ACD32;
-    background-image: url(../images/loupe.png);
+    background-image: url(/PictoRest/web/images/loupe.png);
     background-repeat: no-repeat;
     color: black;
     opacity: 0.8;
   }
-  /* line 232, ../sass/screen.scss */
-  body > section > a > div#creaAlbum {
+  /* line 321, ../sass/screen.scss */
+  body > section > a > div#creaAlbum, body div#rech > a > div#creaAlbum {
     width: 36.17021%;
     float: right;
     margin-right: 0;
     width: 33.33%;
   }
-  /* line 236, ../sass/screen.scss */
-  body > section > a > div#creaAlbum:hover {
+  /* line 325, ../sass/screen.scss */
+  body > section > a > div#creaAlbum:hover, body div#rech > a > div#creaAlbum:hover {
     width: 36.17021%;
     float: right;
     margin-right: 0;
@@ -333,7 +449,7 @@ body > footer {
   }
 }
 @media (min-width: 64em) {
-  /* line 252, ../sass/screen.scss */
+  /* line 341, ../sass/screen.scss */
   body > nav {
     width: 100%;
     float: left;
@@ -346,13 +462,13 @@ body > footer {
     /* Firefox, other Gecko */
     box-sizing: border-box;
   }
-  /* line 260, ../sass/screen.scss */
+  /* line 349, ../sass/screen.scss */
   body > nav > form > input {
     margin-top: 2%;
     margin-bottom: 2%;
     margin-left: 2%;
   }
-  /* line 266, ../sass/screen.scss */
+  /* line 355, ../sass/screen.scss */
   body > nav > div#gestion {
     width: 100%;
     float: left;
@@ -361,57 +477,57 @@ body > footer {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
-  /* line 271, ../sass/screen.scss */
+  /* line 360, ../sass/screen.scss */
   body > nav > div#gestion > a {
-    width: 49.47368%;
+    width: 30.52632%;
     float: right;
     margin-right: 0;
     text-align: center;
     text-decoration: none;
-    width: 50%;
+    width: 33.33%;
     color: white;
   }
-  /* line 278, ../sass/screen.scss */
+  /* line 367, ../sass/screen.scss */
   body > nav > div#gestion > a:hover {
-    width: 49.47368%;
+    width: 30.52632%;
     float: right;
     margin-right: 0;
     text-align: center;
     text-decoration: none;
     background-color: #a4c400;
-    width: 50%;
+    width: 33.33%;
     color: black;
   }
-  /* line 289, ../sass/screen.scss */
-  body > section {
+  /* line 379, ../sass/screen.scss */
+  body > section, body div#rech {
     width: 100%;
     float: left;
     margin-right: 1.05263%;
   }
-  /* line 292, ../sass/screen.scss */
-  body > section > a > div.photo {
+  /* line 382, ../sass/screen.scss */
+  body > section > a > div.photo, body div#rech > a > div.photo {
     width: 24.21053%;
     float: right;
     margin-right: 0;
     width: 25%;
   }
-  /* line 297, ../sass/screen.scss */
-  body > section > a > div.photo:hover {
+  /* line 387, ../sass/screen.scss */
+  body > section > a > div.photo:hover, body div#rech > a > div.photo:hover {
     background-color: #9ACD32;
-    background-image: url(../images/loupe.png);
+    background-image: url(/PictoRest/web/images/loupe.png);
     background-repeat: no-repeat;
     color: black;
     opacity: 0.8;
   }
-  /* line 304, ../sass/screen.scss */
-  body > section > a > div#creaAlbum {
+  /* line 394, ../sass/screen.scss */
+  body > section > a > div#creaAlbum, body div#rech > a > div#creaAlbum {
     width: 24.21053%;
     float: right;
     margin-right: 0;
     width: 25%;
   }
-  /* line 308, ../sass/screen.scss */
-  body > section > a > div#creaAlbum:hover {
+  /* line 398, ../sass/screen.scss */
+  body > section > a > div#creaAlbum:hover, body div#rech > a > div#creaAlbum:hover {
     width: 24.21053%;
     float: right;
     margin-right: 0;
@@ -419,7 +535,7 @@ body > footer {
     background-color: #a20025;
     opacity: 0.7;
   }
-  /* line 317, ../sass/screen.scss */
+  /* line 407, ../sass/screen.scss */
   body > div#contenu {
     width: 100%;
     float: right;
@@ -428,7 +544,7 @@ body > footer {
     margin-left: 5%;
     width: 90%;
   }
-  /* line 325, ../sass/screen.scss */
+  /* line 415, ../sass/screen.scss */
   body > div#contenu > form > div#identifier {
     width: 49.47368%;
     float: left;
@@ -437,7 +553,7 @@ body > footer {
     margin-left: 5%;
     width: 40%;
   }
-  /* line 330, ../sass/screen.scss */
+  /* line 420, ../sass/screen.scss */
   body > div#contenu > form > div#identifier > input[type="submit"] {
     width: 100%;
     float: left;
@@ -450,7 +566,7 @@ body > footer {
     background-color: #a4c400;
     border: solid 3px black;
   }
-  /* line 340, ../sass/screen.scss */
+  /* line 430, ../sass/screen.scss */
   body > div#contenu > form > div#identifier > input[type="submit"]:hover {
     width: 100%;
     float: left;
@@ -464,7 +580,7 @@ body > footer {
     background-color: grey;
     border: solid 3px black;
   }
-  /* line 352, ../sass/screen.scss */
+  /* line 442, ../sass/screen.scss */
   body > div#contenu > form > div#inscrire {
     width: 49.47368%;
     float: right;
@@ -473,7 +589,7 @@ body > footer {
     margin-left: 5%;
     width: 40%;
   }
-  /* line 357, ../sass/screen.scss */
+  /* line 447, ../sass/screen.scss */
   body > div#contenu > form > div#inscrire > input[type="submit"] {
     width: 100%;
     float: left;
@@ -486,7 +602,7 @@ body > footer {
     background-color: #a4c400;
     border: solid 3px black;
   }
-  /* line 367, ../sass/screen.scss */
+  /* line 457, ../sass/screen.scss */
   body > div#contenu > form > div#inscrire > input[type="submit"]:hover {
     width: 100%;
     float: left;

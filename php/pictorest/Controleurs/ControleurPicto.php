@@ -24,37 +24,30 @@ class ControleurPicto {
     //put your code here
     public function displayAccueil($s, $app) {
         if (isset($_SESSION['idUtil'])) {
-            /* //méthode affichage gallerie au hasard
-              $s->display('tpl/header.tpl');
-              $s->display('tpl/nav.tpl');
-              $photos=Photo::All()->take(12)->toArray();
-              $nbPhoto = Photo::all()->count();
-              $s->assign('nbPhoto', $nbPhoto);
-              $s->assign('photos', $photos);
-              $s->display('tpl/affichePhoto.tpl'); */
+
             $s->display('tpl/header.tpl');
             $s->display('tpl/nav.tpl');
-            $photoJson = $this->getPhotoScroll12($app);
-            $photos = json_decode($photoJson);
-            $photoRes = array();
-            foreach ($photos as $key) {
-                $tab = array();
-                $tab['idPhoto'] = $key->idPhoto;
-                $tab['titrePhoto'] = $key->titrePhoto;
-                $tab['desc'] = $key->desc;
-                $tab['cheminThumb'] = $key->cheminThumb;
-                $tab['cheminFull'] = $key->cheminFull;
-                $tab['datePhoto'] = $key->datePhoto;
-                $album = json_decode($this->getNomAlbum($key->idAlbum));
-                foreach ($album as $key) {
-                    $tab['titreAlbum'] = $key->{'titreAlbum'};
-                }
-                $photoRes[] = $tab;
-            }
-            //var_dump($photoRes);
-            $s->assign('photos', $photoRes);
-            $nbPhoto = Photo::all()->count();
-            $s->assign('nbPhoto', $nbPhoto);
+            /* $photoJson = $this->getPhotoScroll12($app);
+              $photos = json_decode($photoJson);
+              $photoRes = array();
+              foreach ($photos as $key) {
+              $tab = array();
+              $tab['idPhoto'] = $key->idPhoto;
+              $tab['titrePhoto'] = $key->titrePhoto;
+              $tab['desc'] = $key->desc;
+              $tab['cheminThumb'] = $key->cheminThumb;
+              $tab['cheminFull'] = $key->cheminFull;
+              $tab['datePhoto'] = $key->datePhoto;
+              $album = json_decode($this->getNomAlbum($key->idAlbum));
+              foreach ($album as $key) {
+              $tab['titreAlbum'] = $key->{'titreAlbum'};
+              }
+              $photoRes[] = $tab;
+              }
+              //var_dump($photoRes);
+              $s->assign('photos', $photoRes);
+              $nbPhoto = Photo::all()->count();
+              $s->assign('nbPhoto', $nbPhoto); */
             $s->display('tpl/affichePhoto.tpl');
         } else {
             $this->inscriptionForm($s, $app, null);
@@ -166,24 +159,26 @@ class ControleurPicto {
         $jsonAlbum = json_decode($this->getAPIAlbumsUser($app, $_SESSION['idUtil']));
         //var_dump($resAlbum);
         $resAlbum = array();
-        foreach ($jsonAlbum as $key) {
-            $tab = array();
-            $tab['idAlbum'] = $key->idAlbum;
-            $tab['titreAlbum'] = $key->titreAlbum;
-            $tab['desc'] = $key->desc;
-            $tab['dateAlbum'] = $key->dateAlbum;
-            $jsonPhotos = json_decode($this->getAPIAlbumPhoto($app, $key->idAlbum));
-            if ($jsonPhotos != null) {
-                foreach ($jsonPhotos as $row) {
-                    $tab['photoCouv'] = $row->cheminThumb;
-                    break;
+        if ($jsonAlbum != null) {
+            foreach ($jsonAlbum as $key) {
+                $tab = array();
+                $tab['idAlbum'] = $key->idAlbum;
+                $tab['titreAlbum'] = $key->titreAlbum;
+                $tab['desc'] = $key->desc;
+                $tab['dateAlbum'] = $key->dateAlbum;
+                $jsonPhotos = json_decode($this->getAPIAlbumPhotoClassique($app, $key->idAlbum));
+                if ($jsonPhotos != null) {
+                    foreach ($jsonPhotos as $row) {
+                        $tab['photoCouv'] = $row->cheminThumb;
+                        break;
+                    }
+                } else {
+                    $tab['photoCouv'] = "/PictoRest/web/images/imageFail.png";
                 }
-            } else {
-                $tab['photoCouv'] = "/PictoRest/web/images/imageFail.png";
-            }
 
-            $tab['idUtil'] = $key->idUtil;
-            $resAlbum[] = $tab;
+                $tab['idUtil'] = $key->idUtil;
+                $resAlbum[] = $tab;
+            }
         }
         //var_dump($photoRes);
         $s->assign('albums', $resAlbum);
@@ -191,10 +186,10 @@ class ControleurPicto {
         $s->display('tpl/footer.tpl');
     }
 
-    public function afficherPhotosAlbum($s, $app, $idAlbum) {
+    public function afficherPhotosAlbum($s, $app, $idAlbum, $e) {
         $s->display('tpl/header.tpl');
         $photoRes = array();
-        $jsonPhotos = json_decode($this->getAPIAlbumPhoto($app, $idAlbum));
+        $jsonPhotos = json_decode($this->getAPIAlbumPhotoClassique($app, $idAlbum));
         if ($jsonPhotos != null) {
             $photoRes = array();
             foreach ($jsonPhotos as $key) {
@@ -205,7 +200,7 @@ class ControleurPicto {
                 $tab['cheminThumb'] = $key->cheminThumb;
                 $tab['cheminFull'] = $key->cheminFull;
                 $tab['datePhoto'] = $key->datePhoto;
-                $album = json_decode($this->getNomAlbum($key->idAlbum));
+                $album = json_decode($this->getNomAlbumAppliClassique($key->idAlbum));
                 foreach ($album as $key) {
                     $tab['titreAlbum'] = $key->{'titreAlbum'};
                 }
@@ -213,23 +208,151 @@ class ControleurPicto {
             }
             $s->assign('photos', $photoRes);
             $nbPhoto = Photo::all()->count();
-            $s->assign('nbPhoto', $nbPhoto);
+            $s->assign('idAlbum', $idAlbum);
+            $s->assign('msgError', $e);
+            $s->display('tpl/nav.tpl');
             $s->display('tpl/affichePhotoProfil.tpl');
         } else {
-            $s->assign('idAlbum',$idAlbum);
-            $s->assign('msgError', "Pas de photos ajoutées à cet album");
-            $s->display('tpl/ajouterPhoto.tpl');
+            $s->assign('idAlbum', $idAlbum);
+            $s->assign('msgError', "Pas de photos ajoutées à cet album.");
+            $s->display('tpl/uploadPhoto.tpl');
         }
     }
-    
-    public function ajouterPhotoAlbum($s, $app, $id){
+
+    public function ajouterPhotoAlbum($s, $app, $id, $e) {
         $s->display('tpl/header.tpl');
         $s->display('tpl/nav.tpl');
-        $url = $app->UrlFor('creerAlbum');
-        $s->assign('url', $url);
-        $s->assign('idAlbum',$id);
+        $s->assign('msgError', $e);
+        $s->assign('idAlbum', $id);
         $s->display('tpl/uploadPhoto.tpl');
+        $s->display('tpl/footer.tpl');
+    }
+
+    public function ajouterPhotoValidAlbum($s, $app, $id, $e) {
+        $t = new tools();
+        $path = "files/"; // Directory to upload files to.
+        $paththumb = "files/thumb/";
+        $valid_exts = array("jpg", "jpeg", "gif", "png"); // default image only extensions
+        $rand = rand();
+
+        //test de la source
+        if ($_POST["source"] == "url") {
+            if ($t->getRequestField('titrePhotoURL') != null && $t->getRequestField('descriptionPhotoURL') != null) {
+                $url = trim($_POST["url"]);
+                if ($url) {
+                    $file = fopen($url, "rb");
+                    if ($file) {
+                        //type de fichier
+                        $tmp = explode(".", strtolower(basename($url)));
+                        $ext = end($tmp);
+                        //validation de fichier
+                        if (in_array($ext, $valid_exts)) {
+                            //nom du fichier
+                            $filename = md5(uniqid($rand, true)) . "." . $ext;                          //process upload
+
+
+                            $newfile = fopen($path . $filename, "wb"); // creating new file on local server
+                            if ($newfile) {
+                                while (!feof($file)) {
+                                    // Write the url file to the directory.
+                                    fwrite($newfile, fread($file, 1024 * 8), 1024 * 8); // write the file to the new directory at a rate of 8kb/sec. until we reach the end.
+                                }
+                                $t->imagethumb($path . $filename, $paththumb . $filename, 150, FALSE, TRUE);
+                                $photo = new Photo();
+                                $photo->titrePhoto = $_POST['titrePhotoURL'];
+                                $photo->desc = $_POST['descriptionPhotoURL'];
+                                $photo->cheminThumb = "/PictoRest/" . $paththumb . $filename;
+                                $photo->cheminFull = "/PictoRest/" . $path . $filename;
+                                $photo->datePhoto = date('Y-m-d G:i:s');
+                                $photo->idAlbum = $id;
+                                $res = $photo->save();
+                                $album = Album::find($id);
+                                $album->photoCouv = $photo->idPhoto;
+                                $album->save();
+                                if ($res == true) {
+                                    $this->afficherPhotosAlbum($s, $app, $id, "Votre photo a bien été ajoutée à votre album");
+                                } else {
+                                    $this->ajouterPhotoAlbum($s, $app, $id, "Problème lors du transfert de la photo, try again ! ");
+                                }
+                            } else {
+                                $this->ajouterPhotoAlbum($s, $app, $id, "Problème de droit, contacter l'admin Doudou");
+                            }
+                        } else {
+                            $this->ajouterPhotoAlbum($s, $app, $id, "L'extention n'est pas autorisée, merci de mettre une IMAGE");
+                        }
+                    } else {
+                        $this->ajouterPhotoAlbum($s, $app, $id, "L'image de l'URL n'est pas accèssible");
+                    }
+                } else {
+                    $this->ajouterPhotoAlbum($s, $app, $id, "L'URL n'est pas valide ou est indisponible");
+                }
+            } else {
+                $this->ajouterPhotoAlbum($s, $app, $id, "Merci de remplir tous les champs correspondants à votre type d'upload. ");
+            }
+        } else {
+            //test de la source
+            if ($t->getRequestField('titrePhotoFILE') != null && $t->getRequestField('descriptionPhotoFILE') != null && $_FILES['file']['tmp_name'] != "") {
+                //type de fichier
+                $ext = strtolower(substr(strrchr($_FILES['file']['name'], '.'), 1));
+                //validation de fichier
+                if (in_array($ext, $valid_exts)) {
+                    //nom du fichier
+                    $filename = md5(uniqid($rand, true)) . "." . $ext;
+                    //process upload
+                    move_uploaded_file($_FILES['file']['tmp_name'], $path . $filename);
+                    $t->imagethumb($path . $filename, $paththumb . $filename, 150, FALSE, TRUE);
+                    $photo = new Photo();
+                    $photo->titrePhoto = $_POST['titrePhotoFILE'];
+                    $photo->desc = $_POST['descriptionPhotoFILE'];
+                    $photo->cheminThumb = "/PictoRest/" . $paththumb . $filename;
+                    $photo->cheminFull = "/PictoRest/" . $path . $filename;
+                    $photo->datePhoto = date('Y-m-d G:i:s');
+                    $photo->idAlbum = $id;
+                    $res = $photo->save();
+                    $album = Album::find($id);
+                    $album->photoCouv = $photo->idPhoto;
+                    $album->save();
+                    if ($res == true) {
+                        $this->afficherPhotosAlbum($s, $app, $id, "Votre photo a bien été ajoutée à votre album");
+                    } else {
+                        $this->ajouterPhotoAlbum($s, $app, $id, "Problème lors du transfert de la photo, try again ! ");
+                    }
+                    //success
+                } else {
+                    $this->ajouterPhotoAlbum($s, $app, $id, "L'extention n'est pas autorisée, merci de mettre une IMAGE");
+                }
+            } else {
+                $this->ajouterPhotoAlbum($s, $app, $id, "Merci de remplir tous les champs correspondants à votre type d'upload. ");
+            }
+        }
+    }
+
+    public function afficherPhotoProfil($s, $app, $id) {
+        $t = new tools();
         $s->display('tpl/header.tpl');
+        $s->display('tpl/nav.tpl');
+        $resPhoto = Photo::find($id)->toArray();
+        $resAlbum = Album::find($resPhoto['idAlbum'])->toArray();
+        $resUtil = Utilisateur::find($resAlbum['idUtil'])->toArray();
+        $photo = array();
+        $photo['idPhoto'] = $resPhoto['idPhoto'];
+        $photo['titrePhoto'] = $resPhoto['titrePhoto'];
+        $photo['descPhoto'] = $resPhoto['desc'];
+        $photo['cheminFull'] = $resPhoto['cheminFull'];
+        $dateFr = $t->dateEntoFr($resPhoto['datePhoto']);
+        $photo['datePhoto'] = $dateFr;
+        $photo['idAlbum'] = $resPhoto['idAlbum'];
+        $photo['titreAlbum'] = $resAlbum['titreAlbum'];
+        $photo['descAlbum'] = $resAlbum['desc'];
+        $photo['identifiant'] = $resUtil['identifiant'];
+        $s->assign('photo', $photo);
+        $s->display('tpl/affichePhotoFull.tpl');
+    }
+
+    public function aPropos($s, $app) {
+        $s->display('tpl/header.tpl');
+        $s->display('tpl/aPropos.tpl');
+        $s->display('tpl/footer.tpl');
     }
 
     /*     * *****************************REST********************************** */
@@ -259,16 +382,26 @@ class ControleurPicto {
     public function getAPIFeeds($app, $identifiant) {
         $feeds = Feed::where('idUtil', '=', $identifiant)->get()->toJson();
         if (strlen($feeds) != 2) {
-            return ($feeds);
+            return $_GET['callback'] . '(' . $feeds . ')';
         } else {
-            $app->response->setStatus(404);
+            return $_GET['callback'] . '(' . $feeds . ')';
         }
     }
 
     public function getAPIAlbumsUser($app, $identifiant) {
         $albums = Album::where('idUtil', '=', $identifiant)->get()->toJson();
         if (strlen($albums) != 2) {
-            return ($albums);
+            return $albums;
+            //return $_GET['callback'] . '(' . $albums.')';
+        } else {
+            $app->response->setStatus(404);
+        }
+    }
+    
+    public function getAPIAlbumsUserRest($app, $identifiant) {
+        $albums = Album::where('idUtil', '=', $identifiant)->get()->toJson();
+        if (strlen($albums) != 2) {
+            return $_GET['callback'] . '(' . $albums.')';
         } else {
             $app->response->setStatus(404);
         }
@@ -277,16 +410,16 @@ class ControleurPicto {
     /* MOD */
 
     public function getAPIAlbums($app, $query) {
-        $album = null;
+        $albums = null;
         if (isset($query)) {
             $albums = Album::where('titreAlbum', 'LIKE', '%' . $query . '%')->get()->toJson();
         } else {
             $albums = Album::all()->toJson();
         }
         if (strlen($albums) != 2) {
-            return ($albums);
+            return $_GET['callback'] . '(' . $albums . ')';
         } else {
-            $app->response->setStatus(404);
+            return(false);
         }
     }
 
@@ -295,7 +428,7 @@ class ControleurPicto {
         if ($albums != null) {
             $albums = $albums->toJson();
             if (strlen($albums) != 2) {
-                return ($albums);
+                return $_GET['callback'] . '(' . $albums . ')';
             }
         } else {
             $app->response->setStatus(404);
@@ -305,7 +438,16 @@ class ControleurPicto {
     public function getAPIAlbumPhoto($app, $idAlbum) {
         $photos = Photo::where('idAlbum', '=', $idAlbum)->get()->toJson();
         if (strlen($photos) != 2) {
-            return ($photos);
+            return $_GET['callback'] . '(' . $photos . ')';
+        } else {
+            return $_GET['callback'] . '(' . $photos . ')';
+        }
+    }
+
+    public function getAPIAlbumPhotoClassique($app, $idAlbum) {
+        $photos = Photo::where('idAlbum', '=', $idAlbum)->get()->toJson();
+        if (strlen($photos) != 2) {
+            return $photos;
         } else {
             $app->response->setStatus(404);
         }
@@ -319,28 +461,39 @@ class ControleurPicto {
         $feed->save();
     }
 
-    public function getPhotoScroll12($app) {
-        $photos = Photo::All()->take(12)->toJson();
-        if (strlen($photos) != 2) {
-            return ($photos);
-        } else {
-            $app->response->setStatus(404);
-        }
-    }
-
-    public function getPhotoScrollLoadMore($id) {
+    public function getPhotosScroll($app, $id) {
         $photos = Photo::where('idPhoto', '>', $id)->take(12)->get()->toJson();
         if (strlen($photos) != 2) {
-            return ($photos);
+            $app->response->headers->set('Content-type', 'application/json');
+            return $_GET['callback'] . '(' . $photos . ')';
+        } else {
+            return false;
+        }
+    }
+
+    public function getPhotoRecherche($app, $id) {
+        $photos = Photo::find($id)->toJson();
+        if (strlen($photos) != 2) {
+            $app->response->headers->set('Content-type', 'application/json');
+            return $_GET['callback'] . '(' . $photos . ')';
+        } else {
+            return false;
+        }
+    }
+
+    public function getNomAlbum() {
+        $album = Album::all()->toJson();
+        if (strlen($album) != 2) {
+            return $_GET['callback'] . '(' . $album . ')';
         } else {
             $app->response->setStatus(404);
         }
     }
 
-    public function getNomAlbum($id) {
-        $album = Album::where('idAlbum', '=', $id)->get(array('titreAlbum'))->toJson();
+    public function getNomAlbumAppliClassique() {
+        $album = Album::all()->toJson();
         if (strlen($album) != 2) {
-            return ($album);
+            return $album;
         } else {
             $app->response->setStatus(404);
         }

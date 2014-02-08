@@ -11,7 +11,6 @@ $break2: 64em 16 ;
 body {
 	@include container($total-columns, $break1);
 	@include susy-grid-background;
-	//background-color: #272822;
 	background-image:url(/PictoRest/web/images/back.png);
 	background-repeat:repeat;
 	background-attachment:fixed;
@@ -76,8 +75,8 @@ body {
 			}		
 			
 		}
-		&>section{
-		margin-bottom: 2%;			
+		&>section,#rech{
+			margin-bottom: 2%;			
 			@include span-columns(4 omega,4);
 			-webkit-box-sizing: border-box; 
 			-moz-box-sizing: border-box;    
@@ -100,7 +99,7 @@ body {
 				}
 				&>div.photo:hover{
 					background-color: #9ACD32;
-					background-image:url(../images/loupe.png);
+					background-image:url(/PictoRest/web/images/loupe.png);
 					background-repeat: no-repeat;			
 					color:black;
 					opacity: 0.8;
@@ -132,13 +131,15 @@ body {
 				
 			}
 		}
-		&>div#contenu{
+		
+		&>div#photo{
 			background-color: #272822;
 			text-align: center;
 			@include span-columns(4 ,4);
 			margin-top: 5%;
 			margin-right: 5%;
 			margin-left: 5%;
+			margin-bottom: 2%;
 			width: 90%;
 			-webkit-box-sizing: border-box; 
 			-moz-box-sizing: border-box;    
@@ -146,6 +147,53 @@ body {
 			box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
 			-moz-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
 			-webkit-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			&>img#pics{
+				@include span-columns(4 ,4);
+				margin-top: 5%;
+				margin-right: 5%;
+				margin-left: 5%;
+				margin-bottom: 2%;
+				height: auto;				
+				width: 90%;
+				-webkit-box-sizing: border-box; 
+				-moz-box-sizing: border-box;    
+				box-sizing: border-box;
+				text-align: center;			
+			}
+			&>a{
+				text-decoration: none;
+				color:white;
+			}
+			&>a:hover{
+				text-decoration: underline;
+				color:white;
+			}
+		}
+		&>div#contenu{
+			background-color: #272822;
+			text-align: center;
+			@include span-columns(4 ,4);
+			margin-top: 5%;
+			margin-right: 5%;
+			margin-left: 5%;
+			margin-bottom: 2%;
+			width: 90%;
+			-webkit-box-sizing: border-box; 
+			-moz-box-sizing: border-box;    
+			box-sizing: border-box;
+			box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			-moz-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			-webkit-box-shadow: 0px 1px 10px 7px rgba(164, 196, 0, 0.69);
+			&>p.error{
+				color : red;
+			}
+			&>a{
+				color:orange;
+			}
+			&>a:hover{
+				text-decoration: blink;
+				color:white;
+			}
 			&>form{
 				&>div#identifier{
 					@include span-columns(4 ,4);
@@ -203,6 +251,47 @@ body {
 				}
 				
 			}
+			&>#uploadUrl,#uploadFile{
+				@include span-columns(4 ,4);
+				margin-right: 5%;
+				margin-left: 5%;
+				width: 90%;
+				&>form{
+					&>input[type="text"],input[type="file"]{
+						margin-right: 5%;
+						margin-left: 5%;
+						width: 90%;
+					}
+					&>input[type="submit"]{
+						@include span-columns(4 ,4);
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: #a4c400 ;
+						border: solid 3px black;
+					}
+					&>input[type="submit"]:hover{
+						@include span-columns(4 ,4);
+						color:white;
+						margin-top: 2%;
+						margin-right: 5%;
+						margin-left: 5%;
+						margin-bottom: 2%;
+						width: 90%;
+						background-color: grey ;
+						border: solid 3px black;
+					}
+				}
+				
+			}
+			&>#uploadFile{
+				@include span-columns(4 ,4);
+				margin-right: 5%;
+				margin-left: 5%;
+				width: 90%;
+			}
 		}
 		&>footer{
 			text-align: center;
@@ -213,7 +302,7 @@ body {
 
 	/*Breakpoint écran tablettes*/
 	@include at-breakpoint($break1) {
-		&>section{
+		&>section,div#rech{
 			@include span-columns(8 ,8);
 			&>a{
 				&>div.photo{
@@ -223,7 +312,7 @@ body {
 				}
 				&>div.photo:hover{
 					background-color: #9ACD32;
-					background-image:url(../images/loupe.png);
+					background-image:url(/PictoRest/web/images/loupe.png);
 					background-repeat: no-repeat;			
 					color:black;
 					opacity: 0.8;
@@ -269,24 +358,25 @@ body {
 			-moz-box-sizing: border-box;    
 			box-sizing: border-box;		
 				&>a{
-					@include span-columns(8 omega ,16);
+					@include span-columns(5 omega ,16);
 					text-align: center;
 					text-decoration: none;
-					width: 50%;
+					width: 33.33%;
 					color:white;					
 				}
 				&>a:hover{
-					@include span-columns(8 omega ,16);
+					@include span-columns(5 omega ,16);
 					text-align: center;
 					text-decoration: none;
 					background-color: #a4c400;
-					width: 50%;
+					width: 33.33%;
 					color:black;
 				}
 			}		
 			
 		}
-		&>section{
+		
+		&>section,div#rech{
 			@include span-columns(16 ,16);
 			&>a{
 				&>div.photo{
@@ -296,7 +386,7 @@ body {
 				}
 				&>div.photo:hover{
 					background-color: #9ACD32;
-					background-image:url(../images/loupe.png);
+					background-image:url(/PictoRest/web/images/loupe.png);
 					background-repeat: no-repeat;			
 					color:black;
 					opacity: 0.8;

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1-DEV, created on 2014-02-05 15:46:41
+<?php /* Smarty version Smarty-3.1-DEV, created on 2014-02-07 09:53:12
          compiled from "tpl\affichePhotoProfil.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2067252f25a2cd54651-36777817%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f0631258b5f0e7c120636f63138039cfeeae2f67' => 
     array (
       0 => 'tpl\\affichePhotoProfil.tpl',
-      1 => 1391615199,
+      1 => 1391766777,
       2 => 'file',
     ),
   ),
@@ -19,23 +19,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_52f25a2cda2931_67643915',
   'variables' => 
   array (
-    'nbPhoto' => 0,
+    'msgError' => 0,
+    'idAlbum' => 0,
     'photos' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_52f25a2cda2931_67643915')) {function content_52f25a2cda2931_67643915($_smarty_tpl) {?><section>
-    <a href="/PictoRest/profil/ajouterPhoto">
+    <p class="error"><?php echo $_smarty_tpl->tpl_vars['msgError']->value;?>
+</p>
+    <a href="/PictoRest/profil/ajouterPhotoAlbum/<?php echo $_smarty_tpl->tpl_vars['idAlbum']->value;?>
+">
         <div id="creaAlbum">
             <p ><b>Ajouter des photos</b></p>
             <img src="/PictoRest/web/images/add.png"/>
             <p class="description"> </p>
         </div>
     </a>
-    <div class="nb_photo" style="display:none;">
-        <?php echo $_smarty_tpl->tpl_vars['nbPhoto']->value;?>
-
-    </div>
     <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['photo'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['photo']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['photo']['name'] = 'photo';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['photo']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['photos']->value) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
@@ -62,7 +62,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['photo']['last']       = ($_s
 ?>
 
 
-        <a href=# class='aphoto'>
+        <a href="/PictoRest/photo/<?php echo $_smarty_tpl->tpl_vars['photos']->value[$_smarty_tpl->getVariable('smarty')->value['section']['photo']['index']]['idPhoto'];?>
+" class='aphoto'>
             <div class="photo" id="<?php echo $_smarty_tpl->tpl_vars['photos']->value[$_smarty_tpl->getVariable('smarty')->value['section']['photo']['index']]['idPhoto'];?>
 ">
                 <p class="titrePhoto"> <?php echo $_smarty_tpl->tpl_vars['photos']->value[$_smarty_tpl->getVariable('smarty')->value['section']['photo']['index']]['titrePhoto'];?>

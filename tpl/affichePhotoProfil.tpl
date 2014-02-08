@@ -1,18 +1,16 @@
 <section>
-    <a href="/PictoRest/profil/ajouterPhoto">
+    <p class="error">{$msgError}</p>
+    <a href="/PictoRest/profil/ajouterPhotoAlbum/{$idAlbum}">
         <div id="creaAlbum">
             <p ><b>Ajouter des photos</b></p>
             <img src="/PictoRest/web/images/add.png"/>
             <p class="description"> </p>
         </div>
     </a>
-    <div class="nb_photo" style="display:none;">
-        {$nbPhoto}
-    </div>
     {section name=photo loop=$photos}
 
 
-        <a href=# class='aphoto'>
+        <a href="/PictoRest/photo/{$photos[photo].idPhoto}" class='aphoto'>
             <div class="photo" id="{$photos[photo].idPhoto}">
                 <p class="titrePhoto"> {$photos[photo].titrePhoto} </p>
                 <img src="{$photos[photo].cheminThumb}"/>

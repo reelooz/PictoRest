@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1-DEV, created on 2014-02-06 08:00:34
+<?php /* Smarty version Smarty-3.1-DEV, created on 2014-02-08 07:13:34
          compiled from "tpl\inscription.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2410052efbbaa695457-79389557%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c4a680e8e886028674f67d16865d4541f31879e4' => 
     array (
       0 => 'tpl\\inscription.tpl',
-      1 => 1391611007,
+      1 => 1391801598,
       2 => 'file',
     ),
   ),
@@ -27,6 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_52efbbaa7c7543_66424614')) {function content_52efbbaa7c7543_66424614($_smarty_tpl) {?><div id="contenu">
     <p clas="error"><?php echo $_smarty_tpl->tpl_vars['msgError']->value;?>
 </p>
+    <a href="/PictoRest/aPropos"/>A propos du projet ! </a>
     <form method="POST" action="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 ">
         <div id="identifier">

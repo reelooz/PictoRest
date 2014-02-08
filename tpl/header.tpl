@@ -11,67 +11,41 @@
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="/PictoRest/web/js/jquery.js"></script>
         <script type="text/javascript" src="/PictoRest/web/js/pieceJointe.js"></script>
+        <script type="text/javascript" src="/PictoRest/web/src/dist/mesFonctions.js"></script>
         <script type="text/javascript">
-
-            $(document).ready(function() { // Quand le document est complètement chargé
-
-                var load = false; // aucun chargement de commentaire n'est en cours
-
-                /* la fonction offset permet de récupérer la valeur X et Y d'un élément
-                 dans une page. Ici on récupère la position du dernier div qui 
-                 a pour classe : ".commentaire" */
-                var offset = $('.photo:last').offset();
-
-                $(window).scroll(function() { // On surveille l'évènement scroll
-
-                    /* Si l'élément offset est en bas de scroll, si aucun chargement 
-                     n'est en cours, si le nombre de commentaire affiché est supérieur 
-                     à 5 et si tout les commentaires ne sont pas affichés, alors on 
-                     lance la fonction. */
-                    if ((offset.top - $(window).height() <= $(window).scrollTop())
-                            && load == false && ($('.photo').size() >= 12)
-                            &&($('.photo').size()!=$('.nb_photo').text())){
-
-                        // la valeur passe à vrai, on va charger
+            $(document).ready(function() {
+                var load = false;
+                var offset = $('a:last').offset();
+                $(window).scroll(function() {
+                    if ((offset.top - $(window).height() <= $(window).scrollTop()) && load == false && ($('.photo').size() >= 12)&&($('.photo').size()!=$('.nb_photo').text())){
                         load = true;
-
-                        //On récupère l'id du dernier commentaire affiché
                         var last_id = $('.photo:last').attr('id');
-
-                        //On affiche un loader
-
-                        if (last_id == 1) {
-                            $('.loadmore').hide();
-                        } else {
-                            $('.loadmore').show();
-                        }
-
-                        //On lance la fonction ajax
-                        $.ajax({
-                            url: '/PictoRest/php/pictorest/Ajax/ajax.php',
-                            type: 'get',
-                            data: 'last=' + last_id,
-                            //Succès de la requête
-                            success: function(data) {
-                                //On masque le loader
-                                $('.loadmore').fadeOut(500);
-                                /* On affiche le résultat après
-                                 le dernier commentaire */
-                                $('.aphoto:last').after(data);
-                                /* On actualise la valeur offset
-                                 du dernier commentaire */
+                        tab = new Array();
+                        $.getJSON("/PictoRest/rest/albums?callback=?", function(dataAlb) {
+                            for(i = 0; i <= dataAlb.length-1 ; i++){
+                                tab[i+1]=dataAlb[i];
+                                
+                            }
+                        }).done(function (){
+                            $.getJSON("/PictoRest/rest/photos/"+last_id+"?callback=?", function(data) {
+                            photos='';
+                            if(data!==false){
+                                for(i = 0; i <= data.length-1 ; i++){
+                                    photos+='<a href="#" class="aphoto"><div class="photo" id="'+data[i]["idPhoto"]+'"><p class="titrePhoto">'+data[i]["titrePhoto"]+'</p><img src="'+data[i]["cheminThumb"]+'"/><p class="description">'+data[i]["desc"]+'</p><p class="from">'+tab[data[i]["idAlbum"]]['titreAlbum']+'</p></div></a>';
+                                }
+                                element=jQuery(photos);
+                                $('section').append(element);
                                 offset = $('.photo:last').offset();
-                                //On remet la valeur à faux car c'est fini
                                 load = false;
                             }
                         });
+                        })
+                        .fail( function(){
+                            alert('OupppssS');
+                        });
                     }
-
-
                 });
-
             });
-
         </script>
     </head>
 

@@ -72,14 +72,36 @@ $app->post('/profil/creerAlbum', function() use ($app) {
 $app->get('/profil/:id', function($id) use ($app) {
     $Smarty = new Smarty();
     $c = new ControleurPicto();
-    $c->afficherPhotosAlbum($Smarty, $app, $id);
+    $c->afficherPhotosAlbum($Smarty, $app, $id,null);
 }
 );
 
 $app->get('/profil/ajouterPhotoAlbum/:id', function($id) use ($app) {
     $Smarty = new Smarty();
     $c = new ControleurPicto();
-    $c->ajouterPhotoAlbum($Smarty, $app, $id);
+    $c->ajouterPhotoAlbum($Smarty, $app, $id, null);
+}
+);
+
+
+$app->post('/profil/ajouterPhotoAlbum/:id', function($id) use ($app) {
+    $Smarty = new Smarty();
+    $c = new ControleurPicto();
+    $c->ajouterPhotoValidAlbum($Smarty, $app, $id, null);
+}
+);
+
+$app->get('/photo/:id', function($id) use ($app) {
+    $Smarty = new Smarty();
+    $c = new ControleurPicto();
+    $c->afficherPhotoProfil($Smarty, $app, $id);
+}
+);
+
+$app->get('/aPropos', function() use ($app) {
+    $Smarty = new Smarty();
+    $c = new ControleurPicto();
+    $c->aPropos($Smarty, $app);
 }
 );
 
@@ -99,7 +121,7 @@ $app->get('/rest/users/:identifiant/feeds', function($identifiant) use ($app) {
 
 $app->get('/rest/users/:identifiant/albums', function($identifiant) use ($app) {
     $c = new ControleurPicto();
-    echo $c->getAPIAlbumsUser($app, $identifiant);
+    echo $c->getAPIAlbumsUserRest($app, $identifiant);
 });
 
 $app->get('/rest/albums', function() use($app) {
@@ -126,4 +148,13 @@ $app->post('/rest/users/:id/feeds', function($idUtil) use ($app) {
     echo $c->addAPIPhoto($app, $idUtil);
 });
 
+$app->get('/rest/photos/:idPhoto', function($idPhoto) use ($app){
+    $c = new ControleurPicto();
+    echo $c->getPhotosScroll($app, $idPhoto);
+});
+
+$app->get('/rest/photoRecherche/:idPhoto', function($idPhoto) use ($app){
+    $c = new ControleurPicto();
+    echo $c->getPhotoRecherche($app, $idPhoto);
+});
 $app->run();

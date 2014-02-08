@@ -1,5 +1,6 @@
 <div id="contenu">
     <p clas="error">{$msgError}</p>
+    <a href="/PictoRest/aPropos"/>A propos du projet ! </a>
     <form method="POST" action="{$url}">
         <div id="identifier">
             <h3> Identifiez-vous </h3>
