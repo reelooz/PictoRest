@@ -190,6 +190,7 @@ class ControleurPicto {
         $s->display('tpl/header.tpl');
         $photoRes = array();
         $jsonPhotos = json_decode($this->getAPIAlbumPhotoClassique($app, $idAlbum));
+        //var_dump($jsonPhotos);
         if ($jsonPhotos != null) {
             $photoRes = array();
             foreach ($jsonPhotos as $key) {
@@ -200,12 +201,16 @@ class ControleurPicto {
                 $tab['cheminThumb'] = $key->cheminThumb;
                 $tab['cheminFull'] = $key->cheminFull;
                 $tab['datePhoto'] = $key->datePhoto;
+                //var_dump($key->idAlbum);
                 $album = json_decode($this->getNomAlbumAppliClassique($key->idAlbum));
-                foreach ($album as $key) {
-                    $tab['titreAlbum'] = $key->{'titreAlbum'};
+                //var_dump($album);
+                foreach ($album as $albums) {
+                    //var_dump($albums->titreAlbum);
+                    $tab['titreAlbum'] = $albums->titreAlbum;
                 }
                 $photoRes[] = $tab;
             }
+            //var_dump($photoRes);
             $s->assign('photos', $photoRes);
             $nbPhoto = Photo::all()->count();
             $s->assign('idAlbum', $idAlbum);
@@ -446,6 +451,7 @@ class ControleurPicto {
 
     public function getAPIAlbumPhotoClassique($app, $idAlbum) {
         $photos = Photo::where('idAlbum', '=', $idAlbum)->get()->toJson();
+        //var_dump($photos);
         if (strlen($photos) != 2) {
             return $photos;
         } else {
@@ -490,8 +496,9 @@ class ControleurPicto {
         }
     }
 
-    public function getNomAlbumAppliClassique() {
-        $album = Album::all()->toJson();
+    public function getNomAlbumAppliClassique($id) {
+        $album = Album::where('idAlbum', '=', $id)->get()->toJson();
+        var_dump($album);
         if (strlen($album) != 2) {
             return $album;
         } else {
