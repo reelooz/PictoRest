@@ -5,12 +5,14 @@
             <option name="albums"> Albums </option>
             <option name="user"> Users </option>
         </select>
-        <input type="button" onClick="rechercheAjax({$smarty.session.idUtil})" value="Go"/>
+        {if isset($smarty.session.idUtil)}
+            <input type="button" onClick="rechercheAjax({$smarty.session.idUtil})" value="Go"/>
+        {/if}
     </form>
     {if isset($smarty.session.idUtil)}
-        
+
         <div id="gestion">
-            <a id="flux" onClick="afficheflux( {$smarty.session.idUtil} )">Flux de photos</a>
+            <a id="flux" onClick="afficheflux({$smarty.session.idUtil})">Flux de photos</a>
             <a id="inscription" href="/PictoRest/deconnexion">Deconnexion [ {$smarty.session.identifiant} ]</a>   				
             <a id="profil" href="/PictoRest/profil">Mon profil</a>
         </div>

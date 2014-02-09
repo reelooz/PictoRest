@@ -354,6 +354,31 @@ class ControleurPicto {
         $s->display('tpl/affichePhotoFull.tpl');
     }
 
+    public function afficheAlbumNonCo($s, $app, $username) {        
+        $tabRes = array();
+        $resUtil = Utilisateur::where('identifiant', '=', $username)->get()->toArray();        
+        if (sizeof($resUtil) != 0) {
+            $s->display('tpl/header.tpl');
+        $s->display('tpl/nav.tpl');
+            foreach ($resUtil as $value) {
+                $idUser = $value['idUtil'];
+            }
+            $resAlbum = Album::where('idUtil', '=', $idUser)->get()->toArray();
+            foreach ($resAlbum as $value) {
+                $tab = array();
+                $tab['titreAlbum'] = $value['titreAlbum'];
+                $tab['desc'] = $value['desc'];
+                $resPhoto = Photo::find($value['photoCouv']);
+                $tab['cheminThumb'] = $resPhoto['cheminThumb'];
+                $tabRes[] = $tab;
+            }
+            $s->assign('tabRes', $tabRes);
+            $s->display('tpl/afficheAlbumNonCo.tpl');
+        } else {
+            $this->inscriptionForm($s, $app, "L'utilisateur <b>".$username."</b> n'existe pas!");
+        }
+    }
+
     public function aPropos($s, $app) {
         $s->display('tpl/header.tpl');
         $s->display('tpl/aPropos.tpl');
@@ -402,11 +427,11 @@ class ControleurPicto {
             $app->response->setStatus(404);
         }
     }
-    
+
     public function getAPIAlbumsUserRest($app, $identifiant) {
         $albums = Album::where('idUtil', '=', $identifiant)->get()->toJson();
         if (strlen($albums) != 2) {
-            return $_GET['callback'] . '(' . $albums.')';
+            return $_GET['callback'] . '(' . $albums . ')';
         } else {
             $app->response->setStatus(404);
         }

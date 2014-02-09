@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1-DEV, created on 2014-02-07 19:35:46
+<?php /* Smarty version Smarty-3.1-DEV, created on 2014-02-09 12:27:18
          compiled from "tpl\nav.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3117552f0b9e441f068-95049086%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '07ff54392fb40d083c6e95e4bff25592c201d431' => 
     array (
       0 => 'tpl\\nav.tpl',
-      1 => 1391801744,
+      1 => 1391948835,
       2 => 'file',
     ),
   ),
@@ -26,14 +26,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <option name="albums"> Albums </option>
             <option name="user"> Users </option>
         </select>
-        <input type="button" onClick="rechercheAjax(<?php echo $_SESSION['idUtil'];?>
+        <?php if (isset($_SESSION['idUtil'])) {?>
+            <input type="button" onClick="rechercheAjax(<?php echo $_SESSION['idUtil'];?>
 )" value="Go"/>
+        <?php }?>
     </form>
     <?php if (isset($_SESSION['idUtil'])) {?>
-        
+
         <div id="gestion">
-            <a id="flux" onClick="afficheflux( <?php echo $_SESSION['idUtil'];?>
- )">Flux de photos</a>
+            <a id="flux" onClick="afficheflux(<?php echo $_SESSION['idUtil'];?>
+)">Flux de photos</a>
             <a id="inscription" href="/PictoRest/deconnexion">Deconnexion [ <?php echo $_SESSION['identifiant'];?>
  ]</a>   				
             <a id="profil" href="/PictoRest/profil">Mon profil</a>

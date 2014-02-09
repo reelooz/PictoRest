@@ -98,6 +98,13 @@ $app->get('/photo/:id', function($id) use ($app) {
 }
 );
 
+$app->get('/:username', function($username) use ($app) {
+    $Smarty = new Smarty();
+    $c = new ControleurPicto();
+    $c->afficheAlbumNonCo($Smarty, $app, $username);
+}
+);
+
 $app->get('/aPropos', function() use ($app) {
     $Smarty = new Smarty();
     $c = new ControleurPicto();
